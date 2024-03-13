@@ -215,18 +215,18 @@ pub mod execute_txs {
 pub mod write_to_db {
     use crate::metrics::metric::*;
 
-    /// start write_to_db record.
+    /// start write_to_db's record.
     pub fn start_write_to_db_record() {
         recorder().duration_record.write_to_db.start_record();
     }
 
-    /// start write_to_db sub record.
+    /// start write_to_db's sub record.
     pub fn start_write_to_db_sub_record() {
         recorder().duration_record.write_to_db.start_sub_record();
     }
 
-    /// start write_to_db write record.
-    fn start_write_to_db_write_record() {
+    /// start write_to_db's write record.
+    fn start_write_record() {
         recorder().duration_record.write_to_db.start_write_record();
     }
 
@@ -249,11 +249,9 @@ pub mod write_to_db {
     // Encapsulate this structure to record write_storage in revert state in a RAII manner.
     impl_write_macro!(
         RevertsStorageWrite,
-        start_write_to_db_write_record,
+        start_write_record,
         record_revert_storage_append_time,
-        record_revert_storage_size,
-        record_receipts_append_time,
-        record_write_receipts_size
+        record_revert_storage_size
     );
 
     /// Record time of write storage changes in StateReverts's write_to_db.
@@ -283,11 +281,9 @@ pub mod write_to_db {
     // Encapsulate this structure to record write_account in revert state in a RAII manner.
     impl_write_macro!(
         RevertsAccountWrite,
-        start_write_to_db_write_record,
+        start_write_record,
         record_revert_account_append_time,
-        record_revert_account_size,
-        record_receipts_append_time,
-        record_write_receipts_size
+        record_revert_account_size
     );
 
     /// Record time of write account changes in StateReverts's write_to_db.
@@ -317,9 +313,7 @@ pub mod write_to_db {
     // Encapsulate this structure to record write receipts in a RAII manner.
     impl_write_macro!(
         ReceiptsWrite,
-        start_write_to_db_write_record,
-        record_receipts_append_time,
-        record_write_receipts_size,
+        start_write_record,
         record_receipts_append_time,
         record_write_receipts_size
     );
@@ -356,11 +350,9 @@ pub mod write_to_db {
     // Encapsulate this structure to record write_account in state changes in a RAII manner.
     impl_write_macro!(
         StateAccountWrite,
-        start_write_to_db_write_record,
+        start_write_record,
         record_state_account_upsert_time,
-        record_state_account_size,
-        record_receipts_append_time,
-        record_write_receipts_size
+        record_state_account_size
     );
 
     /// Record time of write account in StateChanges's write_to_db.
@@ -390,11 +382,9 @@ pub mod write_to_db {
     // Encapsulate this structure to record write_bytecode in state changes in a RAII manner.
     impl_write_macro!(
         StateBytecodeWrite,
-        start_write_to_db_write_record,
+        start_write_record,
         record_state_bytecode_upsert_time,
-        record_state_bytecode_size,
-        record_receipts_append_time,
-        record_write_receipts_size
+        record_state_bytecode_size
     );
 
     /// Record time of write bytecode in StateChanges's write_to_db.
@@ -424,11 +414,9 @@ pub mod write_to_db {
     // Encapsulate this structure to record write_storage in state changes in a RAII manner.
     impl_write_macro!(
         StateStorageWrite,
-        start_write_to_db_write_record,
+        start_write_record,
         record_state_storage_upsert_time,
-        record_state_storage_size,
-        record_receipts_append_time,
-        record_write_receipts_size
+        record_state_storage_size
     );
 
     /// Record time of write storage in StateChanges's write_to_db.
