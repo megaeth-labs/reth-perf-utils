@@ -1123,13 +1123,13 @@ checksum = "c08c74e62047bb2de4ff487b251e4a92e24f48745648451635cec7d591162d9f"
 [[package]]
 name = "revm"
 version = "6.0.0"
-source = "git+https://github.com/megaeth-labs/revm.git?branch=andy/debug/make-utils-independent#dd797cc54bf5a442be29b3f1939bc94f06a39aa6"
+source = "git+https://github.com/megaeth-labs/revm.git?branch=andy/debug/make-utils-independent#76608cb51e509d662d9b53abd663201f2a8b9d7f"
 dependencies = [
  "auto_impl",
  "cfg-if",
  "revm-interpreter",
  "revm-precompile",
- "revm-utils 0.1.0 (git+https://github.com/anonymousGiga/utils.git)",
+ "revm-utils 0.1.0 (git+https://github.com/megaeth-labs/reth-perf-utils.git)",
  "serde",
  "serde_json",
 ]
@@ -1137,17 +1137,17 @@ dependencies = [
 [[package]]
 name = "revm-interpreter"
 version = "3.0.0"
-source = "git+https://github.com/megaeth-labs/revm.git?branch=andy/debug/make-utils-independent#dd797cc54bf5a442be29b3f1939bc94f06a39aa6"
+source = "git+https://github.com/megaeth-labs/revm.git?branch=andy/debug/make-utils-independent#76608cb51e509d662d9b53abd663201f2a8b9d7f"
 dependencies = [
  "revm-primitives",
- "revm-utils 0.1.0 (git+https://github.com/anonymousGiga/utils.git)",
+ "revm-utils 0.1.0 (git+https://github.com/megaeth-labs/reth-perf-utils.git)",
  "serde",
 ]
 
 [[package]]
 name = "revm-precompile"
 version = "4.0.1"
-source = "git+https://github.com/megaeth-labs/revm.git?branch=andy/debug/make-utils-independent#dd797cc54bf5a442be29b3f1939bc94f06a39aa6"
+source = "git+https://github.com/megaeth-labs/revm.git?branch=andy/debug/make-utils-independent#76608cb51e509d662d9b53abd663201f2a8b9d7f"
 dependencies = [
  "aurora-engine-modexp",
  "c-kzg",
@@ -1163,7 +1163,7 @@ dependencies = [
 [[package]]
 name = "revm-primitives"
 version = "2.0.1"
-source = "git+https://github.com/megaeth-labs/revm.git?branch=andy/debug/make-utils-independent#dd797cc54bf5a442be29b3f1939bc94f06a39aa6"
+source = "git+https://github.com/megaeth-labs/revm.git?branch=andy/debug/make-utils-independent#76608cb51e509d662d9b53abd663201f2a8b9d7f"
 dependencies = [
  "alloy-primitives",
  "auto_impl",
@@ -1190,7 +1190,7 @@ dependencies = [
 [[package]]
 name = "revm-utils"
 version = "0.1.0"
-source = "git+https://github.com/anonymousGiga/utils.git#0f5f2f8a0768f83836295f4ae85ea7bbdd7ca242"
+source = "git+https://github.com/megaeth-labs/reth-perf-utils.git#100832cc5d68ffca136fa1965fc773281c188f94"
 dependencies = [
  "allocator-api2",
  "ctor 0.2.7",
