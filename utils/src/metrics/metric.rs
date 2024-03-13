@@ -140,6 +140,12 @@ pub fn transact_sub_record() {
     }
 }
 
+/// Wrapper of transact_sub_record and transact_start_record.
+pub fn transact_record() {
+    transact_start_record();
+    transact_sub_record();
+}
+
 /// Record time of preverify_transaction_inner.
 pub fn preverify_transaction_inner_record() {
     unsafe {

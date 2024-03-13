@@ -51,7 +51,7 @@ impl Print for TimeDistributionStats {
 
         println!();
         println!();
-        println!("========>for debug:");
+        println!("========>:");
         println!("total cnt: {:?}", total_cnt);
         println!("span_in_ns: {:?}", self.span_in_ns);
         println!("span_in_us: {:?}", self.span_in_us);
