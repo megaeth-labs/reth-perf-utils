@@ -1,0 +1,6 @@
+[workspace]
+members = [
+	"utils",
+	"perf-metrics",
+]
+resolver = "2"
