@@ -28,27 +28,27 @@ const INIT_BUFFER: Buffer = Buffer {
 
 /// This structure holds one entry in the TimeTrace.
 #[derive(Default, Clone)]
-struct Event {
+struct Event<'a> {
     /// Time when a particular event occurred.
     timestamp: u64,
     /// Format string describing the event.
-    format: Option<String>,
+    format: Option<&'a str>,
 }
 
 /// Represents a sequence of events. Has a fixed capacity, so slots are re-used on a
 /// circular basis.  
-struct Buffer {
+struct Buffer<'a> {
     /// Holds information from the most recent calls to the record method.
-    events: [Event; BUFFER_SIZE],
+    events: [Event<'a>; BUFFER_SIZE],
     /// Index within events of the slot to use for the next call to the record method.
     next_index: usize,
     /// Indicating that there is a record.
     has_record: bool,
 }
 
-impl Buffer {
+impl<'a> Buffer<'a> {
     /// Record an event in the buffer.
-    fn record(&mut self, timestamp: u64, format: String) {
+    fn record(&mut self, timestamp: u64, format: &'a str) {
         self.events[self.next_index].timestamp = timestamp;
         self.events[self.next_index].format = Some(format);
         self.next_index = (self.next_index + 1) & BUFFER_MASK;
@@ -130,12 +130,12 @@ impl Buffer {
     }
 }
 
-struct TimeTrace {
-    buffer: Buffer,
+struct TimeTrace<'a> {
+    buffer: Buffer<'a>,
 }
 
-impl TimeTrace {
-    fn record(&mut self, format: String) {
+impl<'a> TimeTrace<'a> {
+    fn record(&mut self, format: &'a str) {
         self.buffer.record(cycles::rdtsc(), format);
     }
 
@@ -144,7 +144,7 @@ impl TimeTrace {
     }
 }
 
-pub fn record(format: String) {
+pub fn record<'a>(format: &'static str) {
     unsafe {
         TIME_RECORDER.record(format);
     }
@@ -163,11 +163,11 @@ mod tests {
 
     #[test]
     fn test_record_and_print() {
-        record("1".to_string());
+        record("1");
         std::thread::sleep(Duration::from_nanos(1_000_000_000));
-        record("2".to_string());
+        record("2");
         std::thread::sleep(Duration::from_nanos(2_000_000_000));
-        record("3".to_string());
+        record("3");
         trace_print();
     }
 }
